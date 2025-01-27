@@ -9,4 +9,6 @@ def hanoi(n, start, mid, to):
 n = int(input())
 ans = []
 hanoi(n, 1, 2, 3)
-print(*ans)
+print(len(ans))
+for a in ans:
+    print(*a)
