@@ -7,7 +7,6 @@ sums = [0]
 for i in range(len(nums)):
     sums.append(nums[i]+sums[i])
 
-print(sums)
 left = 1
 right = 1
 ans = sys.maxsize
