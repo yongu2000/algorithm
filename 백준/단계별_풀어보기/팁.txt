@@ -20,3 +20,16 @@ DFS vs BFS
 - DFS는 처음으로 발견되는 해답이 최단거리가 아닐 수도 있음. 
 - 최악의 경우 마지막으로 순회하는 경로가 최단 거리일 수 있으므로 BFS를 활용. 
 - BFS는 너비를 우선으로 탐색하기 때문에 먼저 찾아지는 해답이 곧 최단거리이다.
+
+에라스토테네스의 체
+def prime_numbers(n):
+    arr = [i for i in range(n+1)]
+    end = int(n**(1/2))
+    for i in range(2, end+1):
+        if arr[i] == 0: 
+            continue
+        for j in range(i*i, n+1, i):
+            arr[j] = 0
+            
+    return [i for i in arr[2:] if arr[i]]
+    
