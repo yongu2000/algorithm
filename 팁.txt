@@ -1,3 +1,6 @@
+백준 설정
+https://okane-on-cliff.tistory.com/310
+
 2차원 배열 슬라이싱
 [row[0:n//2] for row in data[0:n//2]]
 
