@@ -1,26 +1,27 @@
 import sys
 input = sys.stdin.readline
 
-word = input().strip().lower()
-word_count = dict()
+n = int(input())
+channels = [input().strip() for _ in range(n)]
+commands = []
 
-for w in word:
-    if w not in word_count: 
-        word_count[w] = 1
-    else:
-        word_count[w] += 1
+kbs1 = "KBS1"
+kbs2 = "KBS2"
 
-max_num = -1
-ans = []
+kbs1_idx = channels.index(kbs1)
+kbs2_idx = channels.index(kbs2)
 
-for val in word_count.values():
-    if max_num < val:
-        max_num = val
+if kbs1_idx > kbs2_idx:
+    kbs2_idx += 1
 
-for key, val in word_count.items():
-    if max_num == val:
-        ans.append(key)
-if len(ans) >= 2 or not ans:
-    print("?")
-else:
-    print(ans[0].upper())
+for _ in range(kbs1_idx):
+    commands.append(1)
+for _ in range(kbs1_idx):
+    commands.append(4)
+
+for _ in range(kbs2_idx):
+    commands.append(1)
+for _ in range(kbs2_idx-1):
+    commands.append(4)
+print("".join(map(str, commands)))
+
