@@ -38,3 +38,10 @@ def prime_numbers(n):
     
 파이썬 연산에 따른 시간복잡도
 https://hyun-am-coding.tistory.com/entry/Python-list-%EC%97%B0%EC%82%B0%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84
+
+리스트에서 특정 값에 해당하는 모든 인덱스
+all_index = list(filter(lambda x : data[x] == 특정 값, range(len(data))))
+
+딕셔너리에 없어도 삭제
+for k in keys:
+    dictionary.pop(k, None) # 기본값 설정
