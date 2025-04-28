@@ -5,40 +5,24 @@ input = sys.stdin.readline
 
 
 def find_possible_alphabet(string, k):
-    data = defaultdict(int)
-    for s in string:
-        data[s] += 1
+    data = defaultdict(list)
 
-    return list(filter(lambda x : data[x] >= k, data.keys()))
+    for i in range(len(string)):
+        if string.count(string[i]) >= k: 
+            data[string[i]].append(i)
+    return data
 
-def find_ans(possible_alphabet, string, k):
-    data = defaultdict(int)
-
-    left, right = 0, 0
-
-    data[string[left]] += 1
-
+def find_ans(possible_alphabet, k):
     shortest = 100001
     longest = -1
+
     for a in possible_alphabet:
-        while left != len(string)-1:
-            if right < len(string)-1:
-                right += 1
-                data[string[right]] += 1
-            else:
-                data[string[left]] -= 1
-                left += 1
+        for i in range(len(possible_alphabet[a])-k+1):
+            length=possible_alphabet[a][i+k-1]-possible_alphabet[a][i] 
 
-            if data[string[right]] == k and string[right] == a:
-                shortest = min(shortest, right-left)
-                longest = max(longest, right-left)
-            
-            elif data[string[right]] > k and string[right] == a:
-                while string[left] == a:
-                    data[string[left]] -= 1
-                    left += 1        
-
-    return shortest, longest
+            shortest = min(shortest, length)
+            longest = max(longest, length)
+    return shortest+1, longest+1
 
 
 t = int(input())
@@ -49,6 +33,7 @@ for _ in range(t):
 
     possible_alphabet = find_possible_alphabet(w, k)
     if possible_alphabet:
-        print(find_ans(possible_alphabet, w, k))
+        shortest, longest = find_ans(possible_alphabet, k)
+        print(shortest, longest)
     else:
         print(-1)
