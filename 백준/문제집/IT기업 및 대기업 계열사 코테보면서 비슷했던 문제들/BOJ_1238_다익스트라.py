@@ -50,4 +50,4 @@ for i in range(1, n+1):
 
     answer[i] = distance[x] + return_home[i]
 
-print(answer)
+print(max(answer))
