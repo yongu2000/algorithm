@@ -1,24 +1,27 @@
-n, m = map(int,input().split())
-time = list(map(int,input().split()))
+import sys
+input = sys.stdin.readline
 
-start = max(time)
-end = sum(time)
+n, m = map(int, input().split())
+lectures = list(map(int, input().split()))
 
-while start <= end:
-    mid = (start + end) // 2 
+left = max(lectures)
+right = sum(lectures)
 
-    total = 0
+while left <= right:
+    mid = (left + right) // 2
+
+    temp = 0
     count = 1
-    for t in time:
-        if total + t > mid:
+    for i in range(n):
+        if temp + lectures[i] > mid:
             count += 1
-            total = 0
-        total += t 
-
-    if count <= m:
-        ans = mid
-        end = mid - 1
-    else:
-        start = mid + 1
+            temp = 0
+        temp += lectures[i]
     
+    if count <= m:
+        right = mid - 1
+        ans = mid
+    else:
+        left = mid + 1
+
 print(ans)
