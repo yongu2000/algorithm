@@ -6,7 +6,6 @@ def solution(money):
     n = len(money)
 
     dp = [[0]*(n+1) for _ in range(3)]
-    print(dp)
     # case 1: 첫집 O 마지막집 X
     for i in range(n-1):
         dp[0][i] = max(dp[0][i-2] + money[i], dp[0][i-1])
