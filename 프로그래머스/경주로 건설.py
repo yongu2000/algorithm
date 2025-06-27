@@ -11,7 +11,6 @@ def solution(board):
     global answer
     answer = MAX
     visited = [[[MAX for y in range(len(board))] for x in range(len(board))] for z in range(4)]
-    print(visited)
 
     def bfs():
         queue = deque()
@@ -34,17 +33,14 @@ def solution(board):
                 else:
                     n_cost = cost + 100
 
-                if 0 <= nx < len(board) and 0 <= ny < len(board):
-                    if board[nx][ny] != 1:
-                        if visited[i][nx][ny] > n_cost:
-                            queue.append([nx, ny, n_cost, i])
-                            visited[i][nx][ny] = n_cost
-        
+                if 0 <= nx < len(board) and 0 <= ny < len(board) and board[nx][ny] != 1:
+                    if visited[i][nx][ny] > n_cost:
+                        queue.append([nx, ny, n_cost, i])
+                        visited[i][nx][ny] = n_cost
+    
     for z in range(4):
         visited[z][0][0] = 0
-        
     bfs()
-
     for z in range(4):
         if answer > visited[z][len(board)-1][len(board)-1]:
             answer = visited[z][len(board)-1][len(board)-1]
